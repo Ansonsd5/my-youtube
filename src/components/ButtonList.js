@@ -1,9 +1,11 @@
 import React from 'react'
+import buttonList from '../config'
+import Button from './Button'
 
 const ButtonList = () => {
   return (
-    <div className='grid grid-flow-col'>
-        <div>"hello</div>
+    <div className='flex gap-2 '>
+        {buttonList.map((button)=> <Button name = {button} />)}
     </div>
   )
 }

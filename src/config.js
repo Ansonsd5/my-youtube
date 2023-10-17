@@ -60,6 +60,22 @@ const sidebarConfig = [
     },
     // Add more user actions
   ];
+
+  const buttonList = [
+    "All",
+    "Trending",
+    "Gaming",
+    "Music",
+    "Sports",
+    "News",
+    "Entertainment",
+    "Education",
+    "Technology",
+    "Travel"
+  ];
+  
+  export default buttonList;
+  
   
   export { sidebarConfig, userConfig };
   

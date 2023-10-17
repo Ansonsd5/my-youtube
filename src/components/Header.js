@@ -1,12 +1,21 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../utils/appSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const toggleMenuHandler = () =>{
+    dispatch(toggleMenu())
+
+  }
   return (
     <div className="header-wrapper grid grid-cols-12 gap-4   items-center align-middle shadow-md  h-14 px-4">
       <div className="icon-hamberger-menu flex col-span-3">
         <img
-          className="h-8 w-8"
+          className="h-8 w-8 cursor-pointer "
           src="https://cdn-icons-png.flaticon.com/128/5358/5358649.png"
+          onClick={() => toggleMenuHandler()}
         />
         <img
           className="h-8 w-auto"
