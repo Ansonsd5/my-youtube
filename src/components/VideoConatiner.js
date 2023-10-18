@@ -1,7 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MOVIELIST_API } from '../utils/constants';
+import VideoCard from './VideoCard';
 
 const VideoConatiner = () => {
+
+  const [videos,setVieos] = useState([]);
+
+
 
 useEffect(()=>{
   getVideos();
@@ -11,12 +16,13 @@ const getVideos = async () =>{
   const data = await fetch(MOVIELIST_API);
   const jsonData = await data.json();
 
-  console.log(jsonData);
-
+  setVieos(jsonData.items);
 }
 
   return (
-    <div>VideoConatiner</div>
+    <div>
+      <VideoCard videoInfo = {videos[0]}/>
+    </div>
   )
 }
 
