@@ -29,13 +29,13 @@ const VideoConatiner = () => {
     setVideos(jsonData.items);
   };
 
-  console.log(videos, "mx-auto");
+
 
   return (
     <div className="py-4 grid grid-cols-4 gap-2">
       {videos?.map((video) => (
-        <Link to={"watch?v="+video.id}>
-        <VideoCard key={video.id} videoInfo={video} />
+        <Link to={"watch?v="+video.id} key={video.id}>
+        <VideoCard  videoInfo={video} />
         </Link>
       ))}
 
