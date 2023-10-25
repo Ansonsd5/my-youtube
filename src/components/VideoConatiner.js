@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MOVIELIST_API } from "../utils/constants";
-import VideoCard from "./VideoCard";
+import VideoCard, { HighestLikedVideoCard } from "./VideoCard";
 import { Link } from "react-router-dom";
 
 const VideoConatiner = () => {
@@ -29,17 +29,24 @@ const VideoConatiner = () => {
     setVideos(jsonData.items);
   };
 
-
-
   return (
     <div className="py-4 grid grid-cols-4 gap-2">
+      {console.log(videos[0], "Anson")}
       {videos?.map((video) => (
-        <Link to={"watch?v="+video.id} key={video.id}>
-        <VideoCard  videoInfo={video} />
-        </Link>
+        <>
+          <></>
+          {video.statistics.likeCount.length >= 7 ? (
+            <div>
+              <HighestLikedVideoCard videoInfo={video} />
+            </div>
+          ) : (
+            <Link to={"watch?v=" + video.id} key={video.id}>
+              <VideoCard videoInfo={video} />
+            </Link>
+          )}
+        </>
       ))}
 
-      {/* <VideoCard videoInfo = {videos[0]}/> */}
     </div>
   );
 };
