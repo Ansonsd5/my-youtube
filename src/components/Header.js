@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
 
+  const [searchQuery,setSearchQuery]= useState('');
+
   const toggleMenuHandler = () =>{
     dispatch(toggleMenu())
 
   }
+
+  const inputHandler = (e) => {
+    setSearchQuery(e.target.value);
+  }
+
+  console.log(searchQuery);
   return (
     <div className="header-wrapper grid grid-cols-12 gap-4   items-center align-middle shadow-md  h-14 px-4">
       <div className="icon-hamberger-menu flex col-span-3">
@@ -24,7 +32,12 @@ const Header = () => {
       </div>
       <div className="search  px-2  flex  col-span-8">
         <div className="flex  items-center   border border-gray-800 px-4  rounded-tl-2xl rounded-bl-2xl">
-          <input className="px-2 flex items-center [all:unset]" placeholder="search" />
+          <input className="px-2 flex items-center [all:unset]" 
+          placeholder="search" 
+          type="text"
+          value={searchQuery}
+          onChange={(e)=>inputHandler(e)}
+          />
         
         </div>
         <div className="border flex items-center px-4 border-t-gray-800 border-b-gray-800 border-r-gray-800 rounded-br-2xl rounded-tr-2xl">  <button>
