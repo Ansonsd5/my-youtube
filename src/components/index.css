@@ -1,0 +1,13 @@
+/* .search-bar::after{
+    content: 'eeeeeeeeeee';
+    position: absolute;
+    background: blue;
+    width: calc(100%-1px);
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+} */
+
+[data-show = true]{
+    background: blue !important;
+}
