@@ -31,11 +31,14 @@ const VideoConatiner = () => {
 
   return (
     <div className="py-4 grid grid-cols-4 gap-2">
-      {console.log(videos[0], "Anson")}
+      
       {videos?.map((video) => (
         <>
           <></>
-          {video.statistics.likeCount.length >= 7 ? (
+          {console.log(typeof(video.statistics.likeCount),"Anson")}
+
+          {(video.statistics.likeCount) && 
+          (video.statistics.likeCount.length >= 7) ? (
             <div>
               <HighestLikedVideoCard videoInfo={video} />
             </div>

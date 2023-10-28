@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
-import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import { YOUTUBE_SEARCH_API, searchIcon } from "../utils/constants";
 import "./index.css";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const [showSuggestions, setShowSuggestions]= useState(true);
-  const [suggestedList, setSuggestedList ] = useState([])
+  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [suggestedList, setSuggestedList] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -20,7 +20,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => getSuggestion(), 700);
+    const timer = setTimeout(() => getSuggestion(), 300);
 
     return () => {
       clearTimeout(timer);
@@ -30,9 +30,7 @@ const Header = () => {
   const getSuggestion = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const jsonData = await data.json();
-    console.log(jsonData[1]);
-    setSuggestedList(jsonData[1])
-
+    setSuggestedList(jsonData[1]);
   };
 
   return (
@@ -49,14 +47,15 @@ const Header = () => {
           alt="youtube"
         />
       </div>
-      <div className="search  px-2  flex  col-span-8 relative">
-        <div className="search-bar relative flex  items-center   border border-gray-800 px-4  rounded-tl-2xl rounded-bl-2xl">
+      <div className="search  flex  col-span-8 col-start-4 relative items-center justify-center w-fit">
+        <div className="search-bar relative flex  items-center   border border-gray-800 px-4  rounded-tl-2xl rounded-bl-2xl from-orange-600">
           <input
             className="px-2 flex items-center [all:unset]"
             placeholder="search"
             type="text"
             value={searchQuery}
             onChange={(e) => inputHandler(e)}
+            data-aria-haspopup={suggestedList.length >1 ? true : false }
           />
         </div>
         <div className="border flex items-center px-4 border-t-gray-800 border-b-gray-800 border-r-gray-700 rounded-br-2xl rounded-tr-2xl">
@@ -68,10 +67,20 @@ const Header = () => {
             />
           </button>
         </div>
-        <div className=" absolute top-4 flex justify-center text-center z-10 bg-red-300 w-fit"
-             data-show={false ? showSuggestions : !showSuggestions}>
-          <ul className="px-2">
-           {suggestedList.map((list)=>(<li key={list}>{list}</li>))}
+        <div
+          className=" absolute top-7 flex justify-center text-center width-available z-10 bg-slate-300  rounded-lg"
+          data-show={false ? showSuggestions : !showSuggestions}
+        >
+          <ul className="  width-available text-left " id="suggestionlist">
+            {suggestedList.map((list) => (
+              <li
+                key={list}
+                className="font-bold py-2 text-sm text-left flex justify-start gap-2 cursor-pointer  box-shadow items-center"
+              >
+                <img src={searchIcon} className="px-2 "/>
+                {list}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
