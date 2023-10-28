@@ -59,7 +59,7 @@ const Header = () => {
             onChange={(e) => inputHandler(e)}
           />
         </div>
-        <div className="border flex items-center px-4 border-t-gray-800 border-b-gray-800 border-r-gray-800 rounded-br-2xl rounded-tr-2xl">
+        <div className="border flex items-center px-4 border-t-gray-800 border-b-gray-800 border-r-gray-700 rounded-br-2xl rounded-tr-2xl">
           {" "}
           <button>
             <img
