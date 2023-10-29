@@ -6,7 +6,7 @@ import "./index.css";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestedList, setSuggestedList] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,8 +20,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => getSuggestion(), 300);
-
+    const timer = setTimeout(() => getSuggestion(), 200);
     return () => {
       clearTimeout(timer);
     };
@@ -55,7 +54,8 @@ const Header = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => inputHandler(e)}
-            data-aria-haspopup={suggestedList.length >1 ? true : false }
+            onFocus={()=>setShowSuggestions(true)}
+            onBlur={()=>setShowSuggestions(false)}
           />
         </div>
         <div className="border flex items-center px-4 border-t-gray-800 border-b-gray-800 border-r-gray-700 rounded-br-2xl rounded-tr-2xl">
@@ -67,22 +67,23 @@ const Header = () => {
             />
           </button>
         </div>
-        <div
-          className=" absolute top-7 flex justify-center text-center width-available z-10 bg-slate-300  rounded-lg"
-          data-show={false ? showSuggestions : !showSuggestions}
-        >
-          <ul className="  width-available text-left " id="suggestionlist">
-            {suggestedList.map((list) => (
-              <li
-                key={list}
-                className="font-bold py-2 text-sm text-left flex justify-start gap-2 cursor-pointer  box-shadow items-center"
-              >
-                <img src={searchIcon} className="px-2 "/>
-                {list}
-              </li>
-            ))}
-          </ul>
-        </div>
+      {showSuggestions && <div
+        className=" absolute top-7 flex justify-center text-center width-available z-10 bg-slate-300  rounded-lg"
+        
+      >
+        <ul className="  width-available text-left " id="suggestionlist">
+          {suggestedList.map((list) => (
+            <li
+              key={list}
+              className="font-bold py-2 text-sm text-left flex justify-start gap-2 cursor-pointer  box-shadow items-center"
+            
+            >
+              <img src={searchIcon} className="px-2 "/>
+              {list}
+            </li>
+          ))}
+        </ul>
+      </div>}
       </div>
 
       <div className="userinfo">

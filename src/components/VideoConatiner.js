@@ -40,7 +40,9 @@ const VideoConatiner = () => {
           {(video.statistics.likeCount) && 
           (video.statistics.likeCount.length >= 7) ? (
             <div>
+              <Link to={"watch?v=" + video.id} key={video.id}>
               <HighestLikedVideoCard videoInfo={video} />
+              </Link>
             </div>
           ) : (
             <Link to={"watch?v=" + video.id} key={video.id}>
