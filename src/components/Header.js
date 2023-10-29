@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API, searchIcon } from "../utils/constants";
 import "./index.css";
+import { cachedResult } from "../utils/searchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
+
+  const cachedData = useSelector((store) => store.search)
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestedList, setSuggestedList] = useState([]);
 
@@ -20,7 +23,14 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => getSuggestion(), 200);
+    const timer = setTimeout(() => {
+      if (cachedData[searchQuery]) {
+        setSuggestedList(cachedData[searchQuery])
+      } else {
+        getSuggestion();
+       
+      }
+    }, 200);
     return () => {
       clearTimeout(timer);
     };
@@ -30,6 +40,9 @@ const Header = () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const jsonData = await data.json();
     setSuggestedList(jsonData[1]);
+    dispatch(cachedResult({
+      [searchQuery] : jsonData[1],
+    }))
   };
 
   return (
@@ -54,8 +67,8 @@ const Header = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => inputHandler(e)}
-            onFocus={()=>setShowSuggestions(true)}
-            onBlur={()=>setShowSuggestions(false)}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
           />
         </div>
         <div className="border flex items-center px-4 border-t-gray-800 border-b-gray-800 border-r-gray-700 rounded-br-2xl rounded-tr-2xl">
@@ -67,23 +80,21 @@ const Header = () => {
             />
           </button>
         </div>
-      {showSuggestions && <div
-        className=" absolute top-7 flex justify-center text-center width-available z-10 bg-slate-300  rounded-lg"
-        
-      >
-        <ul className="  width-available text-left " id="suggestionlist">
-          {suggestedList.map((list) => (
-            <li
-              key={list}
-              className="font-bold py-2 text-sm text-left flex justify-start gap-2 cursor-pointer  box-shadow items-center"
-            
-            >
-              <img src={searchIcon} className="px-2 "/>
-              {list}
-            </li>
-          ))}
-        </ul>
-      </div>}
+        {showSuggestions && (
+          <div className=" absolute top-7 flex justify-center text-center width-available z-10 bg-slate-300  rounded-lg">
+            <ul className="  width-available text-left " id="suggestionlist">
+              {suggestedList.map((list) => (
+                <li
+                  key={list}
+                  className="font-bold py-2 text-sm text-left flex justify-start gap-2 cursor-pointer  box-shadow items-center"
+                >
+                  <img src={searchIcon} className="px-2 " />
+                  {list}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       <div className="userinfo">
