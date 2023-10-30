@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MOVIELIST_API } from "../utils/constants";
 import VideoCard, { HighestLikedVideoCard } from "./VideoCard";
 import { Link } from "react-router-dom";
+import CommentsContainer from "./CommentsContainer";
 
 const VideoConatiner = () => {
   const [videos, setVideos] = useState([]);
@@ -30,7 +31,7 @@ const VideoConatiner = () => {
   };
 
   return (
-    <div className="py-4 grid grid-cols-4 gap-2">
+    <div className="py-4 grid grid-cols-4 gap-2 container">
       
       {videos?.map((video) => (
         <>
@@ -51,6 +52,7 @@ const VideoConatiner = () => {
           )}
         </>
       ))}
+     
 
     </div>
   );
