@@ -77,11 +77,6 @@ const commentsData = [{
                     replies : [],
                 }],
             },],
-        },{
-
-            userName : "Anson",
-            comment : "img elements must have an alt prop, either with meaningful text, or an empty string for decorative images",
-            replies : [],
         }],
     },
     {
