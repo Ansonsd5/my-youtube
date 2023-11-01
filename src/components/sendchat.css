@@ -19,11 +19,7 @@ input{
 
 .input-chat{
     border-bottom: 1px solid #b0adad;
-    min-width: 250px;
+    min-width: 234px;
     max-width: auto;
 }
 
-.send-chat{
-    border: 1px solid #b0adad;
-
-}

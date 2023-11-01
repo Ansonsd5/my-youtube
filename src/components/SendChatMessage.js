@@ -11,7 +11,7 @@ function SendChatMessage({  userName, onSubmit }) {
   };
 
   return (
-    <div className="send-chat-message flex items-center gap-2 bg-red-200 rounded-md border border-black">
+    <div className="send-chat-message flex items-center gap-2 border-t-2 ">
       <div className="user-info">
       <img className='w-4 h-4 border' src='https://img.icons8.com/?size=50&id=11781&format=png' alt='user'/>
       </div>
@@ -25,7 +25,7 @@ function SendChatMessage({  userName, onSubmit }) {
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type your message..."
         />
-        <button className='send-chat px-2' type="submit" disabled={!message}>Send</button>
+        <button className={`send-chat px-3 rounded-xl text-xs shadow-xl inset-2 ${!message ? 'opacity-50 border border-red-500' : 'border border-green-500'}`}  type="submit" disabled={!message}>Send</button>
       </form>
       </div>
     </div>

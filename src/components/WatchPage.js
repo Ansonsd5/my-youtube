@@ -12,20 +12,11 @@ const WatchPage = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
 
-  const [liveMessage, setLiveMessage] = useState('');
-console.log(liveMessage,"liveMessage");
   useEffect(() => {
     dispatch(closeMenu());
   }, []);
 
-  const handleSend= () =>{
-    
-  }
 
-  const handleChatSubmit = (message) => {
-    dispatch(addMessages({name:"Anson",message: message}))
-   
-  }
   return (
     <div className="relative ">
       <div className="flex">
@@ -37,16 +28,11 @@ console.log(liveMessage,"liveMessage");
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         ></iframe>
-        <div className="live-chat flex flex-col min-w-fit ">
+        <div className="live-chat flex flex-col min-w-fit relative">
           <div className="p-2 font-semibold block">Live Chat</div>
           <LiveChat />
-         
         </div>
       </div>
-      <SendChatMessage
-        userName="Your Name"
-        onSubmit={handleChatSubmit}
-      />
       <CommentsContainer />
     </div>
   );

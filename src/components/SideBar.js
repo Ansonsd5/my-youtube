@@ -12,7 +12,7 @@ const SideBar = () => {
   return (
     <div className="text-xl px-2 py-1 flex flex-col gap-2">
       {sidebarConfig.map((sidelist, index) => (
-        <>
+        <div key={index*"3"}>
           {sidelist.id === "subscriptions" || sidelist.id === "watchLater" ? (
             <div className="font-bold pt-4" key={index}>
               <div> </div>
@@ -24,7 +24,7 @@ const SideBar = () => {
               {sidelist.label}
             </div>
           )}
-        </>
+        </div>
       ))}
     </div>
   );
