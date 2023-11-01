@@ -11,3 +11,5 @@ export  const MOVIELIST_API = 'https://youtube.googleapis.com/youtube/v3/videos?
 export const YOUTUBE_SEARCH_API = 'http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=';
 
 export const searchIcon = "https://img.icons8.com/?size=30&id=59878&format=png"
+
+export const LIVECHAT_LIMIT= 20;

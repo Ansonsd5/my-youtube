@@ -1,0 +1,29 @@
+input{
+    all: unset;
+}
+
+.send-chat-message{
+    display: flex;
+    padding: 0.5rem;
+    width: fit-content;
+}
+.user-name{
+    font-weight: bold;
+
+}
+
+.user-info{
+    display: flex;
+    align-items: start;
+}
+
+.input-chat{
+    border-bottom: 1px solid #b0adad;
+    min-width: 250px;
+    max-width: auto;
+}
+
+.send-chat{
+    border: 1px solid #b0adad;
+
+}
