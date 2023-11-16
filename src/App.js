@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import './App.css';
 import MainConatiner from './components/MainConatiner';
 import WatchPage from './components/WatchPage';
+import Hooks from './components/Hooks';
 
 const appRouter = createBrowserRouter([{
 
@@ -21,6 +22,10 @@ const appRouter = createBrowserRouter([{
   {
     path : "watch",
     element : <WatchPage />
+  },
+  {
+    path : "Hooks",
+    element : <Hooks />
   }
     
   ]
