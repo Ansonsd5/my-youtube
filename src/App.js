@@ -9,6 +9,7 @@ import './App.css';
 import MainConatiner from './components/MainConatiner';
 import WatchPage from './components/WatchPage';
 import Hooks from './components/Hooks';
+import Demo from './components/Demo';
 
 const appRouter = createBrowserRouter([{
 
@@ -24,8 +25,8 @@ const appRouter = createBrowserRouter([{
     element : <WatchPage />
   },
   {
-    path : "Hooks",
-    element : <Hooks />
+    path : "demo",
+    element : <Demo />
   }
     
   ]
