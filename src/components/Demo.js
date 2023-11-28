@@ -2,7 +2,11 @@ import React, { useState } from "react";
 
 const Demo = () => {
   const [darkMode, setDarkMode] = useState(true);
-  const [text,setText] = useState('')
+  const [text,setText] = useState('');
+
+  const isPrime = (num)=>{
+    
+  }
   return (
   
       <div className={darkMode ? "bg-black w-full max-h-full":"bg-white w-full max-h-full"}>
